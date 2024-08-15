@@ -3,10 +3,34 @@ import UIKit
 import SnapKit
 
 class CryptoDetailViewController: UIViewController {
-    private let crypto: CryptoModel
-    private let nameLabel = UILabel()
-    private let priceLabel = UILabel()
-    private let changeLabel = UILabel()
+    
+    private var crypto: CryptoModel
+    
+    // MARK: - UI Elements
+    
+    private lazy var nameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var priceLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var changeLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    // MARK: - Initializer
     
     init(crypto: CryptoModel) {
         self.crypto = crypto
@@ -17,53 +41,43 @@ class CryptoDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setupNavigationBar()
-        setupViews()
-        configureView()
+        setupUI()
+        configureUI()
     }
     
-    private func setupNavigationBar() {
-            title = crypto.name
-            let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonTapped))
-            navigationItem.leftBarButtonItem = backButton
-        }
-        
-        @objc private func backButtonTapped() {
-            navigationController?.popViewController(animated: true)
-        }
+    // MARK: - Setup Methods
     
-    private func setupViews() {
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        priceLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        changeLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        
+    private func setupUI() {
         view.addSubview(nameLabel)
         view.addSubview(priceLabel)
         view.addSubview(changeLabel)
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-            make.centerX.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
         }
         
         priceLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
+            make.left.right.equalToSuperview().inset(16)
         }
         
         changeLabel.snp.makeConstraints { make in
             make.top.equalTo(priceLabel.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
+            make.left.right.equalToSuperview().inset(16)
         }
     }
     
-    private func configureView() {
+    private func configureUI() {
         nameLabel.text = crypto.name
-        priceLabel.text = String(format: "Current Price: $%.2f", crypto.priceUsd)
-        changeLabel.text = String(format: "24 Hours Change: %.2f%%", crypto.percentChangeUsdLast24Hours)
+        priceLabel.text = String(format: "$%.2f", crypto.priceUsd)
+        changeLabel.text = String(format: "%.2f%%", crypto.percentChangeUsdLast24Hours)
         changeLabel.textColor = crypto.percentChangeUsdLast24Hours >= 0 ? ColorPalette.darkGreen : ColorPalette.darkRed
     }
 }

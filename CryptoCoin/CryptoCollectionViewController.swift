@@ -2,7 +2,7 @@
 import UIKit
 import SnapKit
 
-class CryptoCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+final class CryptoCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -19,7 +19,11 @@ class CryptoCollectionViewController: UIViewController, UICollectionViewDataSour
     private let cellIdentifier = "CryptoCell"
     private var cryptoData = [CryptoModel]()
     private var sortedCryptoData = [CryptoModel]()
-    private var spinner = UIActivityIndicatorView(style: .large)
+    private lazy var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.hidesWhenStopped = true
+        return spinner
+    }()
 
     deinit {
         print("deinit CryptoCollectionViewController")
@@ -146,7 +150,7 @@ class CryptoCollectionViewController: UIViewController, UICollectionViewDataSour
 
 class CryptoCell: UICollectionViewCell {
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -155,14 +159,14 @@ class CryptoCell: UICollectionViewCell {
         return label
     }()
     
-    private let priceLabel: UILabel = {
+    private lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     
-    private let changeLabel: UILabel = {
+    private lazy var changeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14)
