@@ -23,10 +23,6 @@ final class CryptoCollectionViewController: UIViewController, UICollectionViewDa
         spinner.hidesWhenStopped = true
         return spinner
     }()
-
-    deinit {
-        print("deinit CryptoCollectionViewController")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

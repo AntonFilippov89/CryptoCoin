@@ -8,12 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		E90263632C7121D700747874 /* CryptoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90263622C7121D700747874 /* CryptoDetailViewModel.swift */; };
+		E902636A2C714AF300747874 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E90263692C714AF300747874 /* LaunchScreen.storyboard */; };
 		E9D0963B2C6F04E7007375FE /* CryptoColletionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D0963A2C6F04E7007375FE /* CryptoColletionViewModel.swift */; };
 		E9F029952C6E7EF30050D796 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F029942C6E7EF30050D796 /* AppDelegate.swift */; };
 		E9F029972C6E7EF30050D796 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F029962C6E7EF30050D796 /* SceneDelegate.swift */; };
-		E9F0299F2C6E7EF30050D796 /* CryptoCoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9F0299D2C6E7EF30050D796 /* CryptoCoin.xcdatamodeld */; };
 		E9F029A12C6E7EF40050D796 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9F029A02C6E7EF40050D796 /* Assets.xcassets */; };
-		E9F029A42C6E7EF40050D796 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E9F029A32C6E7EF40050D796 /* Base */; };
 		E9F029AC2C6E7F330050D796 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F029AB2C6E7F330050D796 /* AuthViewController.swift */; };
 		E9F029AE2C6E7F5F0050D796 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F029AD2C6E7F5F0050D796 /* AuthViewModel.swift */; };
 		E9F029B02C6E7F900050D796 /* CryptoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F029AF2C6E7F900050D796 /* CryptoCollectionViewController.swift */; };
@@ -25,13 +24,12 @@
 
 /* Begin PBXFileReference section */
 		E90263622C7121D700747874 /* CryptoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailViewModel.swift; sourceTree = "<group>"; };
+		E90263692C714AF300747874 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9D0963A2C6F04E7007375FE /* CryptoColletionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoColletionViewModel.swift; sourceTree = "<group>"; };
 		E9F029912C6E7EF30050D796 /* CryptoCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F029942C6E7EF30050D796 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9F029962C6E7EF30050D796 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E9F0299E2C6E7EF30050D796 /* CryptoCoin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CryptoCoin.xcdatamodel; sourceTree = "<group>"; };
 		E9F029A02C6E7EF40050D796 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E9F029A32C6E7EF40050D796 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9F029A52C6E7EF40050D796 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9F029AB2C6E7F330050D796 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		E9F029AD2C6E7F5F0050D796 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -53,9 +51,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E90263642C7146A000747874 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E9F029942C6E7EF30050D796 /* AppDelegate.swift */,
+				E9F029962C6E7EF30050D796 /* SceneDelegate.swift */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		E90263652C7146B900747874 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E9F029AB2C6E7F330050D796 /* AuthViewController.swift */,
+				E9F029AF2C6E7F900050D796 /* CryptoCollectionViewController.swift */,
+				E9F029B12C6E7FB30050D796 /* CryptoDetailViewController.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E90263662C7146EF00747874 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E9F029B52C6E7FFF0050D796 /* CryptoModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E90263672C71470A00747874 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E9D0963A2C6F04E7007375FE /* CryptoColletionViewModel.swift */,
+				E9F029AD2C6E7F5F0050D796 /* AuthViewModel.swift */,
+				E90263622C7121D700747874 /* CryptoDetailViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		E90263682C71472700747874 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E9F029B32C6E7FE30050D796 /* NetworkManager .swift */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
 		E9F029882C6E7EF30050D796 = {
 			isa = PBXGroup;
 			children = (
+				E90263642C7146A000747874 /* App */,
+				E90263662C7146EF00747874 /* Model */,
+				E90263652C7146B900747874 /* View */,
+				E90263672C71470A00747874 /* ViewModel */,
+				E90263682C71472700747874 /* Network */,
 				E9F029932C6E7EF30050D796 /* CryptoCoin */,
 				E9F029922C6E7EF30050D796 /* Products */,
 			);
@@ -72,20 +120,9 @@
 		E9F029932C6E7EF30050D796 /* CryptoCoin */ = {
 			isa = PBXGroup;
 			children = (
-				E9F029942C6E7EF30050D796 /* AppDelegate.swift */,
-				E9F029962C6E7EF30050D796 /* SceneDelegate.swift */,
-				E9F029AB2C6E7F330050D796 /* AuthViewController.swift */,
-				E9F029AD2C6E7F5F0050D796 /* AuthViewModel.swift */,
-				E9F029AF2C6E7F900050D796 /* CryptoCollectionViewController.swift */,
-				E9D0963A2C6F04E7007375FE /* CryptoColletionViewModel.swift */,
-				E9F029B12C6E7FB30050D796 /* CryptoDetailViewController.swift */,
-				E90263622C7121D700747874 /* CryptoDetailViewModel.swift */,
-				E9F029B32C6E7FE30050D796 /* NetworkManager .swift */,
-				E9F029B52C6E7FFF0050D796 /* CryptoModel.swift */,
+				E90263692C714AF300747874 /* LaunchScreen.storyboard */,
 				E9F029A02C6E7EF40050D796 /* Assets.xcassets */,
-				E9F029A22C6E7EF40050D796 /* LaunchScreen.storyboard */,
 				E9F029A52C6E7EF40050D796 /* Info.plist */,
-				E9F0299D2C6E7EF30050D796 /* CryptoCoin.xcdatamodeld */,
 			);
 			path = CryptoCoin;
 			sourceTree = "<group>";
@@ -155,7 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9F029A12C6E7EF40050D796 /* Assets.xcassets in Resources */,
-				E9F029A42C6E7EF40050D796 /* Base in Resources */,
+				E902636A2C714AF300747874 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +205,6 @@
 			files = (
 				E9F029AE2C6E7F5F0050D796 /* AuthViewModel.swift in Sources */,
 				E9F029AC2C6E7F330050D796 /* AuthViewController.swift in Sources */,
-				E9F0299F2C6E7EF30050D796 /* CryptoCoin.xcdatamodeld in Sources */,
 				E9F029B62C6E7FFF0050D796 /* CryptoModel.swift in Sources */,
 				E9F029B22C6E7FB30050D796 /* CryptoDetailViewController.swift in Sources */,
 				E9D0963B2C6F04E7007375FE /* CryptoColletionViewModel.swift in Sources */,
@@ -181,17 +217,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		E9F029A22C6E7EF40050D796 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E9F029A32C6E7EF40050D796 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E9F029A62C6E7EF40050D796 /* Debug */ = {
@@ -324,7 +349,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CryptoCoin/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -350,7 +375,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CryptoCoin/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -406,19 +431,6 @@
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		E9F0299D2C6E7EF30050D796 /* CryptoCoin.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E9F0299E2C6E7EF30050D796 /* CryptoCoin.xcdatamodel */,
-			);
-			currentVersion = E9F0299E2C6E7EF30050D796 /* CryptoCoin.xcdatamodel */;
-			path = CryptoCoin.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = E9F029892C6E7EF30050D796 /* Project object */;
 }

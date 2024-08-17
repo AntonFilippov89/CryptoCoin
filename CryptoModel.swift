@@ -1,4 +1,3 @@
-
 import Foundation
 
 struct CryptoResponse: Decodable {
@@ -13,15 +12,12 @@ struct CryptoModel: Decodable {
     struct Metrics: Decodable {
         let marketData: MarketData
     }
-
+    
     struct MarketData: Decodable {
         let priceUsd: Double
         let percentChangeUsdLast24Hours: Double?
     }
-}
-
-extension CryptoModel {
-    //auto computable property
+    
     var priceUsd: Double {
         metrics.marketData.priceUsd
     }
