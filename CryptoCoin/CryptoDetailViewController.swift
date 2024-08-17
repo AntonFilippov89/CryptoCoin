@@ -1,10 +1,9 @@
-
 import UIKit
 import SnapKit
 
 class CryptoDetailViewController: UIViewController {
     
-    private var crypto: CryptoModel
+    private var viewModel: CryptoDetailViewModel
     
     // MARK: - UI Elements
     
@@ -33,7 +32,7 @@ class CryptoDetailViewController: UIViewController {
     // MARK: - Initializer
     
     init(crypto: CryptoModel) {
-        self.crypto = crypto
+        self.viewModel = CryptoDetailViewModel(crypto: crypto)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -75,9 +74,9 @@ class CryptoDetailViewController: UIViewController {
     }
     
     private func configureUI() {
-        nameLabel.text = crypto.name
-        priceLabel.text = String(format: "$%.2f", crypto.priceUsd)
-        changeLabel.text = String(format: "%.2f%%", crypto.percentChangeUsdLast24Hours)
-        changeLabel.textColor = crypto.percentChangeUsdLast24Hours >= 0 ? ColorPalette.darkGreen : ColorPalette.darkRed
+        nameLabel.text = viewModel.cryptoName
+        priceLabel.text = viewModel.cryptoPrice
+        changeLabel.text = viewModel.cryptoChange
+        changeLabel.textColor = viewModel.changeColor
     }
 }

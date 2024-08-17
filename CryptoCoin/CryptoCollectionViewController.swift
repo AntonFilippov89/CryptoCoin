@@ -17,8 +17,7 @@ final class CryptoCollectionViewController: UIViewController, UICollectionViewDa
     }()
     
     private let cellIdentifier = "CryptoCell"
-    private var cryptoData = [CryptoModel]()
-    private var sortedCryptoData = [CryptoModel]()
+    private let viewModel = CryptoColletionViewModel()
     private lazy var spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.hidesWhenStopped = true
@@ -35,7 +34,8 @@ final class CryptoCollectionViewController: UIViewController, UICollectionViewDa
         setupNavigationBar()
         setupCollectionView()
         setupSpinner()
-        fetchCryptos()
+        bindViewModel()
+        viewModel.fetchCryptos()
     }
     
     private func setupNavigationBar() {
@@ -64,25 +64,19 @@ final class CryptoCollectionViewController: UIViewController, UICollectionViewDa
         spinner.startAnimating()
     }
     
-    private func fetchCryptos() {
-        NetworkManager.shared.fetchCrytos { [weak self] cryptos, error in
+    private func bindViewModel() {
+        viewModel.didUpdateData = { [weak self] in
             DispatchQueue.main.async {
                 self?.spinner.stopAnimating()
-                if let error = error {
-                    self?.showError(error.localizedDescription)
-                    return
-                }
-                self?.cryptoData = cryptos ?? []
-                self?.sortedCryptoData = self?.cryptoData ?? []
                 self?.collectionView.reloadData()
             }
         }
-    }
-    
-    private func showError(_ message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        viewModel.didFailWithError = { [weak self] errorMessage in
+            DispatchQueue.main.async {
+                self?.spinner.stopAnimating()
+                self?.showError(errorMessage)
+            }
+        }
     }
     
     @objc private func logoutButtonTapped() {
@@ -98,31 +92,35 @@ final class CryptoCollectionViewController: UIViewController, UICollectionViewDa
     @objc private func sortButtonTapped() {
         let sortOptions = UIAlertController(title: "Sort by", message: nil, preferredStyle: .actionSheet)
         sortOptions.addAction(UIAlertAction(title: "Price Change Descending", style: .default, handler: { _ in
-            self.sortedCryptoData = self.cryptoData.sorted { $0.percentChangeUsdLast24Hours > $1.percentChangeUsdLast24Hours }
-            self.collectionView.reloadData()
+            self.viewModel.sort(by: .priceChangeDescending)
         }))
         sortOptions.addAction(UIAlertAction(title: "Price Change Ascending", style: .default, handler: { _ in
-            self.sortedCryptoData = self.cryptoData.sorted { $0.percentChangeUsdLast24Hours < $1.percentChangeUsdLast24Hours }
-            self.collectionView.reloadData()
+            self.viewModel.sort(by: .priceChangeAscending)
         }))
         sortOptions.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(sortOptions, animated: true)
     }
     
+    private func showError(_ message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
     // MARK: - UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sortedCryptoData.count
+        return viewModel.sortedCryptoData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! CryptoCell
-        cell.configure(with: sortedCryptoData[indexPath.item])
+        cell.configure(with: viewModel.sortedCryptoData[indexPath.item])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let crypto = sortedCryptoData[indexPath.item]
+        let crypto = viewModel.sortedCryptoData[indexPath.item]
         let detailVC = CryptoDetailViewController(crypto: crypto)
         navigationController?.pushViewController(detailVC, animated: true)
     }
